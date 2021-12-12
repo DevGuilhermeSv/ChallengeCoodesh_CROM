@@ -22,11 +22,11 @@ namespace ChallengeCoodesh_CROM
                 .ConfigureServices((hostContext, services) =>
                 {
                     // requires using Microsoft.Extensions.Options
-                    services.Configure<BookstoreDatabaseSettings>(
-                        Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
+                    //services.Configure<BookstoreDatabaseSettings>(
+                   //     Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
 
-                    services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
-                        sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
+                  //  services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
+                    //    sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
                     services.AddHttpClient();
                     services.AddTransient<IMyService, MyService>();
                 }).UseConsoleLifetime();
