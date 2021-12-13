@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ChallengeCoodesh_CROM.Models.Entitie;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace ChallengeCoodesh_CROM
 {
@@ -21,12 +22,7 @@ namespace ChallengeCoodesh_CROM
             var builder = new HostBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    // requires using Microsoft.Extensions.Options
-                    //services.Configure<BookstoreDatabaseSettings>(
-                   //     Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
-
-                  //  services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
-                    //    sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
+                    
                     services.AddHttpClient();
                     services.AddTransient<IMyService, MyService>();
                 }).UseConsoleLifetime();
