@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChallengeCoodesh_CROM.Models.Entitie;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -8,6 +9,7 @@ namespace ChallengeCoodesh_CROM.Interface
 {
     public interface IMyService
     {
-        Task<HttpResponseMessage> GetPage();
+        Task<IEnumerable<Data>> GetArticles(int limit);
+        Task<int> GetCount();
     }
 }
