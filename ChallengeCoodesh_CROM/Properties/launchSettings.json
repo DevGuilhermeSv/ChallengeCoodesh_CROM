@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ChallengeCoodesh_CROM": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
