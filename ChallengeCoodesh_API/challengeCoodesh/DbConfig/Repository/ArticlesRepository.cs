@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using challengeCoodesh.DbConfig.IRepository;
 using ChallengeCoodesh_CROM.Models.Entitie;
+using MongoDB.Driver;
 
 namespace challengeCoodesh.DbConfig.Repository
 {
     public class ArticlesRepository : IArticlesRepository
     {
+        DbConfig db = new DbConfig();
         public void Adicionar(Articles article)
         {
             throw new NotImplementedException();
@@ -16,12 +17,16 @@ namespace challengeCoodesh.DbConfig.Repository
 
         public Articles Buscar(int id)
         {
-            throw new NotImplementedException();
+            var database = db.database;
+            var collection = database.GetCollection<Articles>("data");
+            return collection.FindSync(ar => ar.id == id).Current.ElementAt(0);
         }
 
         public IEnumerable<Articles> Buscar()
         {
-            throw new NotImplementedException();
+            var database = db.database;
+            var collection = database.GetCollection<Articles>("data");
+            return collection.FindSync(ar => true).Current;
         }
 
         public void Editar(int ID, Articles article)

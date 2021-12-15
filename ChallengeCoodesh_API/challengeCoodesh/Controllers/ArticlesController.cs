@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChallengeCoodesh_CROM.Models.Entitie;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,17 +23,17 @@ namespace challengeCoodesh.Controllers
 
         // GET: api/<ArticlesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Articles> Get()
         {
-            return new string[] { "value1", "value2" };
+            return  articlesRepository.Buscar();
         }
 
         // GET api/<ArticlesController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Articles Get(int id)
         {
-            articlesRepository.Buscar(id);
-            return "value";
+           return articlesRepository.Buscar(id);
+         
         }
 
         // POST api/<ArticlesController>
