@@ -1,20 +1,27 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-bionic
 
-FROM mcr.microsoft.com/dotnet/runtime:3.1 AS base
+
+
+RUN mkdir /app
 WORKDIR /app
-
-FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
-WORKDIR /src
-COPY ["ChallengeCoodesh_CROM/ChallengeCoodesh_CROM.csproj", "ChallengeCoodesh_CROM/"]
-RUN dotnet restore "ChallengeCoodesh_CROM/ChallengeCoodesh_CROM.csproj"
 COPY . .
-WORKDIR "/src/ChallengeCoodesh_CROM"
-RUN dotnet build "ChallengeCoodesh_CROM.csproj" -c Release -o /app/build
+RUN dotnet publish "ChallengeCoodesh_CROM.csproj" -o /app/publish
 
-FROM build AS publish
-RUN dotnet publish "ChallengeCoodesh_CROM.csproj" -c Release -o /app/publish
+RUN chmod 750 /app/publish
 
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ChallengeCoodesh_CROM.dll"]
+# Add crontab file in the cron directory
+ADD crontab /etc/cron.d/hello-cron
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/hello-cron
+
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
+
+#Install Cron
+RUN apt-get update
+RUN apt-get -y install cron
+RUN apt-get install nano
+
+# Run the command on container startup
+CMD cron && tail -f /var/log/cron.log
