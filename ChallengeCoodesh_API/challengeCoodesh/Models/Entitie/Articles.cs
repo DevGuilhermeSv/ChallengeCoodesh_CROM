@@ -6,7 +6,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ChallengeCoodesh_CROM.Models.Entitie
 {
-    class Data
+    public class Articles
     {
         [BsonId]
         public int id { get; set; }
