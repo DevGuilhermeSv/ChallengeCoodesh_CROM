@@ -1,0 +1,14 @@
+passos para contruir a aplicação de desafio do coodesh:
+PART 1
+1 - entender como funciona a API da SpaceFlight (ok)
+2 - construir a aplicação que vai popular o banco de dados(ok)
+3 - configurar o banco de dados remoto
+4 - migrar os dados
+
+----------------//----------------
+
+PART 2
+
+1 - desenvolver a API e as rotas
+2 - estabelecer comunicação com o banco remote
+3 - tratar casos de uso
