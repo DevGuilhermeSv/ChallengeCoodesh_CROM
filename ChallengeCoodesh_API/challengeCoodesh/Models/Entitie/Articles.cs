@@ -28,7 +28,7 @@ namespace ChallengeCoodesh_CROM.Models.Entitie
 
     public class Event
     {
-        public string id { get; set; }
+        public int id { get; set; }
         public string provider { get; set; }
     }
 }

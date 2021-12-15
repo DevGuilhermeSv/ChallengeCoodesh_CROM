@@ -18,16 +18,19 @@ namespace challengeCoodesh.DbConfig.Repository
         public Articles Buscar(int id)
         {
             var database = db.database;
-            var collection = database.GetCollection<Articles>("data");
-            return collection.FindSync(ar => ar.id == id).Current.ElementAt(0);
+            var collection = database.GetCollection<Articles>("Data");
+            return collection.Find(ar => ar.id == id).FirstOrDefault();
         }
 
         public IEnumerable<Articles> Buscar()
         {
             var database = db.database;
-            var collection = database.GetCollection<Articles>("data");
-            return collection.FindSync(ar => true).Current;
+            var collection = database.GetCollection<Articles>("Data");
+            var data = collection.Find(ar => true).ToList();
+            return data;
         }
+            
+    
 
         public void Editar(int ID, Articles article)
         {

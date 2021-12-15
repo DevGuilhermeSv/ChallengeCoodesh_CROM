@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using challengeCoodesh.DbConfig.IRepository
+using challengeCoodesh.DbConfig.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
