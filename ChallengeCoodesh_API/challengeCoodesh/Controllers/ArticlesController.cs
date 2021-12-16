@@ -23,38 +23,93 @@ namespace challengeCoodesh.Controllers
 
         // GET: api/Articles
         [HttpGet]
-        public IEnumerable<Articles> Get()
+        public IActionResult Get(int? _init, int? _finish)
         {
-            return  articlesRepository.Buscar();
+            if (_init == null || _init < 0)
+            {
+                _init = 0;
+            }
+            if (_finish == null || _finish < 0)
+            {
+                _finish = 1;
+            }
+            if (_finish <= _init)
+            {
+                return BadRequest("_init parameter need be bigger that _finish parameter");
+            }
+
+            return new OkObjectResult(articlesRepository.Buscar(_init,_finish)); 
         }
 
         // GET api/Articles/5
         [HttpGet("{id}")]
-        public Articles Get(int id)
+        public IActionResult Get(int id)
         {
-           return articlesRepository.Buscar(id);
-         
+            var article = articlesRepository.Buscar(id);
+            if (article == null)
+            {
+                return NotFound();
+            }
+            return Ok(article);
+
         }
 
         // POST api/Articles
         [HttpPost]
-        public void Post([FromBody] Articles value)
+        public ActionResult Post([FromBody] Articles value)
         {
-            articlesRepository.Adicionar(value);
+            try
+            {
+                articlesRepository.Adicionar(value);
+
+                return Created("", value);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         // PUT api/Articles/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Articles value)
+        public ActionResult Put(int id, [FromBody] Articles value)
         {
-            articlesRepository.Editar(id, value);
+            var article = articlesRepository.Buscar(id);
+            if (article == null)
+            {
+                return NotFound();
+            }
+            try
+            {
+                articlesRepository.Editar(id, value);
+                return Ok(value);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         // DELETE api/Articles/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
-            articlesRepository.Remover(id);
+            var article = articlesRepository.Buscar(id);
+            if (article == null)
+            {
+                return NotFound();
+            }
+            try
+            {
+                articlesRepository.Remover(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+           
+
         }
     }
 }

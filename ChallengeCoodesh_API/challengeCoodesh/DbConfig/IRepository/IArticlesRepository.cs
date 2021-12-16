@@ -10,7 +10,7 @@ namespace challengeCoodesh.DbConfig.IRepository
     {
         public void Adicionar(Articles article);
         public Articles Buscar(int id);
-        public IEnumerable<Articles> Buscar();
+        public IEnumerable<Articles> Buscar(int? _init, int? _finish);
         public void Editar(int ID, Articles article);
         public void Remover(int ID);
 
