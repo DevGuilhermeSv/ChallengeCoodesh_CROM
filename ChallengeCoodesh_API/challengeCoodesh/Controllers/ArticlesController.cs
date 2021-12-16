@@ -21,14 +21,14 @@ namespace challengeCoodesh.Controllers
         }
 
 
-        // GET: api/<ArticlesController>
+        // GET: api/Articles
         [HttpGet]
         public IEnumerable<Articles> Get()
         {
             return  articlesRepository.Buscar();
         }
 
-        // GET api/<ArticlesController>/5
+        // GET api/Articles/5
         [HttpGet("{id}")]
         public Articles Get(int id)
         {
@@ -36,22 +36,25 @@ namespace challengeCoodesh.Controllers
          
         }
 
-        // POST api/<ArticlesController>
+        // POST api/Articles
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Articles value)
         {
+            articlesRepository.Adicionar(value);
         }
 
-        // PUT api/<ArticlesController>/5
+        // PUT api/Articles/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Articles value)
         {
+            articlesRepository.Editar(id, value);
         }
 
-        // DELETE api/<ArticlesController>/5
+        // DELETE api/Articles/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            articlesRepository.Remover(id);
         }
     }
 }

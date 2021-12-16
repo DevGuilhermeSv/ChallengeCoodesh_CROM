@@ -10,9 +10,12 @@ namespace challengeCoodesh.DbConfig.Repository
     public class ArticlesRepository : IArticlesRepository
     {
         DbConfig db = new DbConfig();
+
         public void Adicionar(Articles article)
         {
-            throw new NotImplementedException();
+            var database = db.database;
+            var collection = database.GetCollection<Articles>("Data");
+            collection.InsertOne(article);
         }
 
         public Articles Buscar(int id)
@@ -34,12 +37,17 @@ namespace challengeCoodesh.DbConfig.Repository
 
         public void Editar(int ID, Articles article)
         {
-            throw new NotImplementedException();
+            var database = db.database;
+            var collection = database.GetCollection<Articles>("Data");
+            collection.ReplaceOne(ar => ar.id == ID, article);
         }
 
-        public void Removar(int ID)
+        public void Remover(int ID)
         {
-            throw new NotImplementedException();
+            var database = db.database;
+            var collection = database.GetCollection<Articles>("Data");
+            var data = collection.DeleteOne(ar => ar.id == ID);
+            
         }
     }
 }

@@ -12,7 +12,7 @@ namespace challengeCoodesh.DbConfig.IRepository
         public Articles Buscar(int id);
         public IEnumerable<Articles> Buscar();
         public void Editar(int ID, Articles article);
-        public void Removar(int ID);
+        public void Remover(int ID);
 
     }
 }
