@@ -29,7 +29,7 @@ namespace challengeCoodesh.DbConfig.Repository
         {
             var database = db.database;
             var collection = database.GetCollection<Articles>("Data");
-            var data = collection.Find(ar => ar.id>=_init && ar.id<=_finish).Skip(_init).Limit(_finish).ToList();
+            var data = collection.Find(ar => true).Skip(_init).Limit(_finish).ToList().OrderBy(ar=>ar.id);
             return data;
         }
             

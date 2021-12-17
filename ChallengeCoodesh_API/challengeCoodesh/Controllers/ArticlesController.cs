@@ -25,11 +25,6 @@ namespace challengeCoodesh.Controllers
         [HttpGet]
         public IActionResult Get(int? _init=0, int? _limit=10)
         {
-            
-            
-            
-               // return BadRequest("_init parameter cant be bigger that _finish parameter");
-            
 
             return new OkObjectResult(articlesRepository.Buscar(_init, _limit)); 
         }
