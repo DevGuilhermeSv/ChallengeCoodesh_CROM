@@ -23,22 +23,15 @@ namespace challengeCoodesh.Controllers
 
         // GET: api/Articles
         [HttpGet]
-        public IActionResult Get(int? _init, int? _finish)
+        public IActionResult Get(int? _init=0, int? _limit=10)
         {
-            if (_init == null || _init < 0)
-            {
-                _init = 0;
-            }
-            if (_finish == null || _finish < 0)
-            {
-                _finish = 1;
-            }
-            if (_finish <= _init)
-            {
-                return BadRequest("_init parameter need be bigger that _finish parameter");
-            }
+            
+            
+            
+               // return BadRequest("_init parameter cant be bigger that _finish parameter");
+            
 
-            return new OkObjectResult(articlesRepository.Buscar(_init,_finish)); 
+            return new OkObjectResult(articlesRepository.Buscar(_init, _limit)); 
         }
 
         // GET api/Articles/5
@@ -81,6 +74,7 @@ namespace challengeCoodesh.Controllers
             }
             try
             {
+                value.id = id;
                 articlesRepository.Editar(id, value);
                 return Ok(value);
             }
