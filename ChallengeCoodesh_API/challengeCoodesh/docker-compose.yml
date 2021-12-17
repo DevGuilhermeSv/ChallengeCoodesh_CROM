@@ -6,6 +6,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    ports:
+      - 8080:80
+      - 40443:443
   cron:
     container_name: cron
     build: 
