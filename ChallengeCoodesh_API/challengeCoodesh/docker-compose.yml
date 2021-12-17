@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile
+  cron:
+    container_name: cron
+    build: 
+      context: ../../ChallengeCoodesh_CROM/ChallengeCoodesh_CROM
+      dockerfile: Dockerfile
+
+
+
+
+
+
