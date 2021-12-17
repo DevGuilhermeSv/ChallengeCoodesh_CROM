@@ -19,6 +19,7 @@ as 09:00h
 - Para executar o CRON acesse o diretorio `challengeCoodesh\ChallengeCoodesh_CROM\ChallengeCoodesh_CROM`  
 - Execute o comando `dotnet run --project ChallengeCoodesh_CROM.csproj`
 
+**[Video de Execução](https://www.loom.com/embed/8cbeb99da077441aa2adb945cf1b2711)** 
 ## Tecnologias e Ferramentas
  - Dotnet Core 3.1
  - MongoDB
